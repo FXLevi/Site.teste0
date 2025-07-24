@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Eventos Futuros</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fffdd0;
+      padding: 30px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    .evento {
+      background-color: #fff68f;
+      border: 2px solid black;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .data {
+      font-weight: bold;
+      color: #c0392b;
+    }
+    .descricao {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📅 Eventos da Guarda</h2>
+  <div id="listaEventos"></div>
+
+  <script>
+    // Lista de eventos com data e descrição
+    const eventos = [
+      { data: '2025-07-16', descricao: 'Procissão de São Bento' },
+      { data: '2025-08-17', descricao: 'Quermesse da Matriz de Nazaré' },
+      { data: '2025-09-02', descricao: 'Feira Paroquial Imaculada Conceição' },
+      { data: '2025-07-20', descricao: 'Batismo Comunitário – São João Batista' },
+      { data: '2025-07-25', descricao: 'Celebração – Santa Dulce dos Pobres' },
+      { data: '2025-10-15', descricao: 'Visita missionária – São José Operário' }
+    ];
+
+    // Ordena os eventos por data (mais próxima primeiro)
+    eventos.sort((a, b) => new Date(a.data) - new Date(b.data));
+
+    const lista = document.getElementById("listaEventos");
+
+    eventos.forEach(evento => {
+      const bloco = document.createElement("div");
+      bloco.className = "evento";
+      bloco.innerHTML = `
+        <div class="data">📍 ${new Date(evento.data).toLocaleDateString("pt-BR")}</div>
+        <div class="descricao">${evento.descricao}</div>
+      `;
+      lista.appendChild(bloco);
+    });
+  </script>
+
+</body>
+</html>

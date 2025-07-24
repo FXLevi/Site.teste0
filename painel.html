@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel do Guarda</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fffdd0;
+      margin: 0;
+      padding: 0;
+    }
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      position: fixed;
+      top: 15px;
+      left: 20px;
+      z-index: 1000;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      transition: left 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .sidebar h3 {
+      margin-top: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+    .content {
+      max-width: 400px;
+      margin: 100px auto;
+      background-color: #fff68f;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .top-image {
+      display: block;
+      margin: 0 auto 20px;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 2px solid black;
+      border-radius: 5px;
+      background-color: #ffffcc;
+      color: black;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: black;
+      color: yellow;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+
+  <div class="sidebar" id="sidebar">
+    <h3>Menu</h3>
+    <ul>
+     
+  <button onclick="abrirEventos()" style="...">📅 Eventos</button>
+<li><a href="estatisticas.html" style="color: white;">📊 Estatísticas</a></li>
+  <li>⚙️ Configurações</li>
+
+    </ul>
+  </div>
+
+  <div class="content">
+    <img id="fotoTopo" src="https://via.placeholder.com/150?text=Foto" class="top-image">
+
+    <label for="data">Data:</label>
+    <input type="date" id="data">
+
+    <label for="comunidade">Comunidade onde serviu:</label>
+    <select id="comunidade">
+      <option value="">Selecione uma comunidade</option>
+      <option>Imaculada Conceição</option>
+      <option>Nossa Senhora Aparecida</option>
+      <option>Nossa Senhora das Graças</option>
+      <option>Nossa Senhora de Fátima</option>
+      <option>Paróquia/Matriz de Nazaré</option>
+      <option>Santa Dulce dos Pobres</option>
+      <option>Santa Gianna Beretta</option>
+      <option>Santo Antônio</option>
+      <option>São Bento</option>
+      <option>São Bernardo</option>
+      <option>São Francisco</option>
+      <option>São João Batista</option>
+      <option>São João Paulo II</option>
+      <option>São José</option>
+      <option>São José Operário</option>
+      <option>São Miguel Arcanjo</option>
+      <option>São Sebastião</option>
+    </select>
+
+    <label for="foto">Foto:</label>
+    <input type="file" id="foto" accept="image/*" onchange="previewFoto()">
+
+    <button onclick="salvarServico()">Enviar</button>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("open");
+    }
+
+    function previewFoto() {
+      const file = document.getElementById("foto").files[0];
+      const reader = new FileReader();
+      reader.onload = function () {
+        document.getElementById("fotoTopo").src = reader.result;
+      }
+      reader.readAsDataURL(file);
+    }
+  function abrirEventos() {
+  window.location.href = "eventos.html";
+}
+</script>
+
+</body>
+</html>
+    <

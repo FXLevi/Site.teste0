@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Estatísticas de Comunidades</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fffdd0;
+      padding: 30px;
+    }
+    .grafico-container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #fff68f;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📊 Participação por Comunidade</h2>
+  <div class="grafico-container">
+    <canvas id="graficoComunidades"></canvas>
+  </div>
+
+  <script>
+    // Lista oficial de comunidades
+    const comunidades = [
+      'Imaculada Conceição',
+      'Nossa Senhora Aparecida',
+      'Nossa Senhora das Graças',
+      'Nossa Senhora de Fátima',
+      'Paróquia/Matriz de Nazaré',
+      'Santa Dulce dos Pobres',
+      'Santa Gianna Beretta',
+      'Santo Antônio',
+      'São Bento',
+      'São Bernardo',
+      'São Francisco',
+      'São João Batista',
+      'São João Paulo II',
+      'São José',
+      'São José Operário',
+      'São Miguel Arcanjo',
+      'São Sebastião'
+    ];
+
+    // Recuperar histórico do localStorage
+    const historico = JSON.parse(localStorage.getItem("historicoServicos")) || [];
+
+    // Contar quantas vezes cada comunidade aparece
+    const contagem = comunidades.map(comunidade => {
+      return historico.filter(item => item === comunidade).length;
+    });
+
+    const ctx = document.getElementById("graficoComunidades").getContext("2d");
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: comunidades,
+        datasets: [{
+          label: "Quantidade de Serviços",
+          data: contagem,
+          backgroundColor: '#f1c40f',
+          borderColor: 'black',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        scales: {
+          x: { beginAtZero: true }
+        },
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: "Serviços por Comunidade"
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
